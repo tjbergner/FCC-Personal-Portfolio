@@ -2,6 +2,19 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
     --primaryText: #000;
+    --navText: #3d3d3d;
+    --btn: #940DFF;
+    --btnHover: #8101eb;
+    --p1: #4598E5;
+    --p1Hover: #0a7ce6;
+    --p2: #C05C3C;
+    --p2Hover: #ca3d0e; 
+    --p3: #E2D23B;
+    --p3Hover: #dac400;
+    --transBg: background-color 0.3s ease-in;
+    --transC: color 0.3s ease-in;
+    --transUp: transform 0.2s ease-out;
+    --transYHover: translateY(-3px);
 }
 
 * {
@@ -20,6 +33,7 @@ header {
     position: sticky;
     top: 0;
     background-color: #fff;
+    opacity: 0.95;
     z-index: 1;
 }
 
@@ -58,8 +72,13 @@ header #logo {
 
 #navbar a {
     text-decoration: none;
-    color: var(--primaryText);
+    color: var(--navText);
     font-size: 1.1rem;
+    transition: var(--transC);
+}
+
+#navbar a:hover {
+    color: var(--primaryText);
 }
 
 
@@ -112,11 +131,16 @@ main {
     font-weight: 600;
     text-align: center;
     color: #fff;
-    background-color: #940DFF;
+    background-color: var(--btn);
     padding: 0.3rem 1rem;
     justify-content: space-between;
     width: 8rem;
     border-radius: 1.5rem;
+    transition: var(--transBg);
+}
+
+#welcome-section .btn:hover {
+    background-color: var(--btnHover);
 }
 
 #welcome-section .right {
@@ -129,6 +153,7 @@ main {
     max-width: 910px;
     height: auto;
     margin-top: 1rem;
+    z-index: -1;
 }
 
 #welcome-section #scrolldown {
@@ -162,6 +187,11 @@ h2 {
 #projects .tile-container a {
     text-decoration: none;
     max-width: 450px;
+    transition: var(--transUp);
+}
+
+#projects .tile-container a:hover {
+    transform: var(--transYHover);
 }
 
 #projects .project-tile {
@@ -172,15 +202,30 @@ h2 {
 }
 
 #projects #p1 {
-    background-color: #4598E5;
+    background-color: var(--p1);
+    transition: var(--transBg);
 }
 
 #projects #p2 {
-    background-color: #C05C3C;
+    background-color: var(--p2);
+    transition: var(--transBg);
 }
 
 #projects #p3 {
-    background-color: #E2D23B;
+    background-color: var(--p3);
+    transition: var(--transBg);
+}
+
+#projects #p1:hover {
+    background-color: var(--p1Hover);
+}
+
+#projects #p2:hover {
+    background-color: var(--p2Hover);
+}
+
+#projects #p3:hover {
+    background-color: var(--p3Hover);
 }
 
 #projects .project-tile img {
@@ -215,6 +260,11 @@ h2 {
     color: var(--primaryText);
     text-decoration: none;
     font-size: 1.3rem;
+    transition: var(--transC);
+}
+
+#contact a:hover {
+    color: var(--btnHover);
 }
 
 #contact .svg-cont {
@@ -224,10 +274,6 @@ h2 {
 
 /* Media Queries */
 @media screen and (min-width: 600px) {
-    body {
-        padding: 0 2rem;
-    }
-
     header #logo {
         font-size: 2.25rem;
     }
@@ -285,6 +331,16 @@ h2 {
     }   
 }
 
+@media screen and (min-width: 1024px) {
+    .header-container {
+        padding: 0.5rem 2rem;
+    }
+
+    main {
+        padding: 0 2rem;
+    }
+}
+
 @media screen and (min-width: 1025px) {
     body {
         overflow-x: hidden;
@@ -317,7 +373,6 @@ h2 {
         position: absolute;
         right: -8vw;
         top: 19vh;
-        z-index: -1;
     }
 
     #welcome-section #scrolldown {
@@ -339,5 +394,128 @@ h2 {
     #projects .project-tile {
         margin: 3rem 0 3rem 0;
     }
+}
+
+
+/* Animation */
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 0.4;}
+}
+
+@keyframes fadeinfull {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes moveleft {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes moveright {
+    from {
+        opacity: 0;
+        transform: translateX(-500%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes downup {
+    0% {
+        transform: translateY(0%);
+    }
+    10% {
+        transform: translateY(30%);
+    }
+    20% {
+        transform: translateY(0%);
+    }
+}
+
+/* Circles */
+#c1, #c2, #c3, #c4, #c5, #c6 {
+    opacity: 0;
+    transform: translateX(100%);
+    animation: moveleft 0.75s ease-out forwards;
+}
+
+#c1 {
+    animation-delay: 0.25s;
+}
+
+#c2 {
+    animation-delay: 0.5s;
+}
+
+#c3 {
+    animation-delay: 0.75s;
+}
+
+#c4 {
+    animation-delay: 1s;
+}
+
+#c5 {
+    animation-delay: 1.25s;
+}
+
+#c6 {
+    animation-delay: 1.5s;
+}
+
+.shadow {
+    opacity: 0;
+    animation: fadein 1s ease-in 1.5s forwards;
+}
+
+/* Icons, Button, Heading */
+#i1, #i2, #i3, #i4, #i5, #welcome-section .btn {
+    opacity: 0;
+    transform: translateX(-500%);
+    animation: moveright 0.75s ease-out forwards;
+}
+
+#i5 {
+    animation-delay: 0.5s;
+}
+
+#i4 {
+    animation-delay: 0.75s;
+}
+
+#i3 {
+    animation-delay: 1s;
+}
+
+#i2 {
+    animation-delay: 1.25s;
+}
+
+#i1 {
+    animation-delay: 1.5s;
+}
+
+#welcome-section .btn {
+    animation-delay: 1.5s;
+}
+
+#welcome-section h1 {
+    opacity: 0;
+    animation: fadeinfull 1.5s ease-in 0.75s forwards;
+}
+
+/* Downarrow */
+#scrolldown {
+    animation: downup 3.5s ease-in-out 3s infinite;
 }
 
